@@ -1,14 +1,42 @@
+import { prisma } from '@/lib/db/prisma'
+import { redirect } from 'next/navigation'
+import  FormSubmitButton from '@/components/form-submit-button'
 
 export const metadata = {
-  title: "Adicionar Produto",
-  description: "Adicionar um produto a venda",
+  title: 'Adicionar Produto',
+  description: 'Adicionar um produto a venda',
 }
 
-export default function AddProduct() {
+async function AddProduct(formData: formData) {
+  'use server'
+
+  const name = formData.get('name')?.toString()
+  const description = formData.get('description')?.toString()
+  const price = Number(formData.get('price'))
+  const imageUrl = formData.get('imageUrl')?.toString()
+
+  if (!name || !description || !price || !imageUrl) {
+    throw Error("Todos os campos são obrigatórios")
+  }
+
+
+  await prisma.product.create({
+    data: {
+      name,
+      description,
+      price,
+      imageUrl,
+    },
+  })
+
+  redirect('/')
+}
+
+export default function AddProductPage() {
   return (
     <div>
       <h1 className="text-lg mb-3 font-bold ">Adicionar novo produto</h1>
-      <form action="">
+      <form action={AddProduct}>
         <input
           type="text"
           required
@@ -25,7 +53,7 @@ export default function AddProduct() {
         <input
           type="number"
           required
-          name="preço"
+          name="price"
           placeholder="preço do produto"
           className="mb-3 w-full p-3 border border-gray-300 rounded-md input input-bordered max-w-ws"
         />
@@ -37,9 +65,9 @@ export default function AddProduct() {
           className="mb-3 w-full p-3 border border-gray-300 rounded-md input input-bordered max-w-ws"
         />
 
-        <button type="submit" className="btn btn-primary btn-block">
+        <FormSubmitButton className="btn-block">
           Adicionar Produto
-        </button>
+        </FormSubmitButton>
       </form>
     </div>
   )
