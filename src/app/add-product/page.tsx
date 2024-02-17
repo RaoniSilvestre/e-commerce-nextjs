@@ -1,7 +1,13 @@
+
+export const metadata = {
+  title: "Adicionar Produto",
+  description: "Adicionar um produto a venda",
+}
+
 export default function AddProduct() {
   return (
     <div>
-      <h1 className="text-lg mb-3 font-bold ">Add Product</h1>
+      <h1 className="text-lg mb-3 font-bold ">Adicionar novo produto</h1>
       <form action="">
         <input
           type="text"
@@ -13,6 +19,7 @@ export default function AddProduct() {
         <textarea
           required
           name="description"
+          placeholder="Descrição do produto"
           className="textarea textarea-bordered mb-3 w-full"
         ></textarea>
         <input
@@ -31,7 +38,6 @@ export default function AddProduct() {
         />
 
         <button type="submit" className="btn btn-primary btn-block">
-          {' '}
           Adicionar Produto
         </button>
       </form>
