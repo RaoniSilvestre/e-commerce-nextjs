@@ -3,7 +3,8 @@ import PriceTag from '@/components/price-tag'
 import { cache } from 'react'
 import AddToCartButton from './add-to-cart-button'
 import { prisma } from '@/lib/db/prisma'
-import {incrementProductQuantity} from './actions'
+import { incrementProductQuantity } from './actions'
+import { Metadata } from 'next'
 
 interface ProductPageProps {
   params: {
@@ -21,23 +22,16 @@ const getProduct = cache(async (id: string) => {
   return product
 })
 
-export async function generateMetadata({
-  params: { id },
-}: ProductPageProps): Promise<Metadata> {
-  const product = await getProduct(id)
-  return {
-    title: product.name + ' - Loja de produtos',
-    description: product.description,
-    openGraph: {
-      images: [{ url: product.imageUrl }],
-    },
-  }
-}
+
 
 export default async function ProductPage({
   params: { id },
 }: ProductPageProps) {
   const product = await getProduct(id)
+
+  if (!product) {
+    return <div>Produto não encontrado</div>
+  }
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 lg:items-center">
