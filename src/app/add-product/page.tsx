@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/db/prisma'
 import { redirect } from 'next/navigation'
-import  FormSubmitButton from '@/components/form-submit-button'
+import FormSubmitButton from '@/components/form-submit-button'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export const metadata = {
   title: 'Adicionar Produto',
@@ -10,15 +12,20 @@ export const metadata = {
 async function AddProduct(formData: formData) {
   'use server'
 
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/add-product')
+  }
+
   const name = formData.get('name')?.toString()
   const description = formData.get('description')?.toString()
   const price = Number(formData.get('price'))
   const imageUrl = formData.get('imageUrl')?.toString()
 
   if (!name || !description || !price || !imageUrl) {
-    throw Error("Todos os campos são obrigatórios")
+    throw Error('Todos os campos são obrigatórios')
   }
-
 
   await prisma.product.create({
     data: {
@@ -32,7 +39,13 @@ async function AddProduct(formData: formData) {
   redirect('/add-product')
 }
 
-export default function AddProductPage() {
+export default async function AddProductPage() {
+  const session = await getServerSession(authOptions)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/add-product')
+  }
+
   return (
     <div>
       <h1 className="text-lg mb-3 font-bold ">Adicionar novo produto</h1>
