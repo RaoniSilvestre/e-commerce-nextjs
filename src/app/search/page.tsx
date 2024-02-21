@@ -1,12 +1,13 @@
 import { prisma } from '@/lib/db/prisma'
 import ProductCard from '@/components/product-card'
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
 
 interface SearchPageProps {
   searchParams: { query: string }
 }
 
-export function generateMetadata({ query }: { query: string }) {
+export function generateMetadata({ searchParams : { query }}: SearchPageProps): Metadata {
   return {
     title: `Buscando por: ${query}`,
     description: `Resultados para a busca: ${query}`,
