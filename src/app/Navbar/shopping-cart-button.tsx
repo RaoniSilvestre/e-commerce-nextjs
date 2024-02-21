@@ -45,7 +45,7 @@ export default function ShoppingCartButton({ cart }: ShoppingCartButtonProps) {
       >
         <div className="card-body">
           <span className="font-bold text-lg">{cart?.size || 0} Itens</span>
-          <span className="text-info">
+          <span className="">
             Subtotal: {formatPrice(cart?.subtotal || 0)}
           </span>
           <div className="card-actions">
