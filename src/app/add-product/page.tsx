@@ -2,14 +2,14 @@ import { prisma } from '@/lib/db/prisma'
 import { redirect } from 'next/navigation'
 import FormSubmitButton from '@/components/form-submit-button'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
+import { authOptions } from '../api/auth/[...nextauth]'
 
 export const metadata = {
   title: 'Adicionar Produto',
   description: 'Adicionar um produto a venda',
 }
 
-async function AddProduct(formData: formData) {
+async function AddProduct(formData: FormData) {
   'use server'
 
   const session = await getServerSession(authOptions)
