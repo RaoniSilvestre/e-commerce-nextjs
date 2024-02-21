@@ -2,6 +2,8 @@
 
 import { getCart, createCart } from '@/lib/db/cart'
 import { revalidatePath } from 'next/cache'
+import { prisma } from '@/lib/db/prisma'
+
 export async function setProductQuantity(productId: string, quantity: number) {
   const cart = (await getCart()) ?? (await createCart())
 
