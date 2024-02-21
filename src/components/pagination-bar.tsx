@@ -11,7 +11,7 @@ export default function PaginationComponent({
 }: PaginationBarProps) {
   const maxPage = Math.min(totalPages, currentPage + 4)
   const minPage = Math.max(1, Math.min(currentPage - 5, maxPage - 9))
-  const numberedPageItems: JSX.Element = []
+  const numberedPageItems: JSX.Element[] = []
 
   for (let page = minPage; page <= maxPage; page++) {
     numberedPageItems.push(
