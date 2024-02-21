@@ -5,14 +5,14 @@ import ShoppingCartButton from './shopping-cart-button'
 import UserMenuButton from './user-menu-button'
 import { getCart } from '@/lib/db/cart'
 import { redirect } from 'next/navigation'
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 async function searchProducts(formData: FormData) {
   'use server'
   
   const searchQuery = formData.get('searchQuery')?.toString()
 
-  if (searchProducts) {
+  if (searchQuery) {
     redirect('/search?query=' + searchQuery)
   }
 }
