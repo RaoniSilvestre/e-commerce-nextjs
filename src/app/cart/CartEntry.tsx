@@ -1,13 +1,13 @@
 'use client'
 
-import { CartItemWithProducts } from '@/lib/db/cart'
+import { CartItemWithProduct } from '@/lib/db/cart'
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatPrice } from '@/lib/format'
 import { useTransition } from 'react'
 
 interface CartEntryProps {
-  cartItem: CartItemWithProducts
+  cartItem: CartItemWithProduct
   setProductQuantity: (productId: string, quantity: number) => Promise<void>
 }
 
