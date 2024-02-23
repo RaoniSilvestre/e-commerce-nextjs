@@ -2,7 +2,7 @@ import { prisma } from '@/lib/db/prisma'
 import { redirect } from 'next/navigation'
 import FormSubmitButton from '@/components/form-submit-button'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth-options'
+import { authOptions } from '@/app/api/auth/[...nextauth]/options'
 
 export const metadata = {
   title: 'Adicionar Produto',

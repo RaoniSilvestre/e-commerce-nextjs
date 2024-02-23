@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '../../assets/logo.png'
+import logo from '@/assets/logo.png'
 import ShoppingCartButton from './shopping-cart-button'
 import UserMenuButton from './user-menu-button'
 import { getCart } from '@/lib/db/cart'
 import { redirect } from 'next/navigation'
-import { authOptions } from "@/lib/auth-options";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
 async function searchProducts(formData: FormData) {
   'use server'
