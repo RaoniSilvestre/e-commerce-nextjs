@@ -4,7 +4,6 @@ import { cache } from 'react'
 import AddToCartButton from './add-to-cart-button'
 import { prisma } from '@/lib/db/prisma'
 import { incrementProductQuantity } from './actions'
-import { Metadata } from 'next'
 
 interface ProductPageProps {
   params: {
