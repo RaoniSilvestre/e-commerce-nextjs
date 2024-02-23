@@ -1,5 +1,7 @@
 # E-commerce de Miçangas e Bijuterias
 
+![Pagina inicial](./src/assets/open-graph.jpeg)
+
 Este é um projeto fullstack web desenvolvido utilizando Next.js, Tailwind CSS, NextAuth, Prisma, MongoDB e DaisyUI. O projeto consiste em uma lojinha online para a venda de miçangas e bijuterias.
 
 ## Instalação
